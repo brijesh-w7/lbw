@@ -20,17 +20,12 @@ public class SaveManager : MonoBehaviour
             Instance = this;
         }
 
-        dataHandler = new FileDataHandler(
-            Application.persistentDataPath,
-            "savegame.json");
+        dataHandler = new FileDataHandler(Application.persistentDataPath, "savegame.json");
     }
 
     private void Start()
     {
-        saveables = FindObjectsOfType<MonoBehaviour>()
-            .OfType<ISaveable>()
-            .ToList();
-        LoadGame();
+        saveables = FindObjectsOfType<MonoBehaviour>().OfType<ISaveable>().ToList(); LoadGame();
     }
 
     public void SaveGame()
@@ -51,7 +46,6 @@ public class SaveManager : MonoBehaviour
 
         if (gameData == null)
         {
-            Debug.Log("No save data");
             return;
         }
 
@@ -62,7 +56,6 @@ public class SaveManager : MonoBehaviour
     }
     private void OnApplicationQuit()
     {
-
         SaveGame();
     }
 
@@ -70,7 +63,6 @@ public class SaveManager : MonoBehaviour
     {
         gameData.playerData = null;
         gameData.enemies = null;
-        // dataHandler.Save(gameData);
         SaveGame();
     }
 }

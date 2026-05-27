@@ -21,8 +21,6 @@ public class FileDataHandler
         {
             Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
 
-            // string json = JsonUtility.ToJson(data, true);
-
             string json = JsonConvert.SerializeObject(data, Formatting.Indented);
             Debug.Log("save: " + json);
             File.WriteAllText(fullPath, json);
